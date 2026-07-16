@@ -1,0 +1,7 @@
+# Secrets — NEVER commit
+.env
+
+# Foundry build artifacts
+cache/
+out/
+broadcast/*/dry-run/

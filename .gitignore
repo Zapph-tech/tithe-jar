@@ -1,0 +1,22 @@
+# Secrets
+**/.env
+**/.env*.local
+
+# Node
+node_modules/
+.pnp
+.pnp.*
+
+# Next.js
+web/.next/
+web/out/
+web/build/
+
+# Foundry
+contracts/cache/
+contracts/out/
+
+# Misc
+.DS_Store
+*.log
+.vercel

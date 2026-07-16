@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #17120e;
+  --ink-2: #211a14;
+  --ink-3: #2b2118;
+  --line: rgba(242, 233, 216, 0.1);
+  --line-strong: rgba(242, 233, 216, 0.2);
+
+  --amber: #e8a63c;
+  --amber-glow: #f6c560;
+  --gold: #c9922e;
+  --cream: #f2e9d8;
+  --taupe: #a8967b;
+  --taupe-dim: #7d6f5b;
+  --sage: #9aad6f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(120% 90% at 50% -10%, #241b12 0%, var(--ink) 55%),
+    var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint warm vignette so the dark never reads as flat black */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(140% 120% at 50% 40%, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+  z-index: 0;
+}
+
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ---------- cards ---------- */
+.card {
+  background: linear-gradient(180deg, var(--ink-2), var(--ink));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.25rem 1.35rem;
+}
+.card-hd {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+/* ---------- inputs ---------- */
+.field {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  color: var(--cream);
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field::placeholder {
+  color: var(--taupe-dim);
+}
+.field:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(232, 166, 60, 0.15);
+}
+.label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--taupe);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.72rem 1.1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.12s, filter 0.15s, background 0.15s;
+  font-family: var(--font-body), sans-serif;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: linear-gradient(180deg, var(--amber-glow), var(--amber));
+  color: #2a1c07;
+  box-shadow: 0 6px 24px -8px rgba(232, 166, 60, 0.6);
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--cream);
+}
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--amber);
+  color: var(--amber-glow);
+}
+
+/* ---------- the jar (signature) ---------- */
+.jar-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.jar-halo {
+  position: absolute;
+  inset: -30% -10%;
+  background: radial-gradient(
+    50% 42% at 50% 58%,
+    rgba(246, 197, 96, calc(0.14 + var(--fill-frac, 0.3) * 0.4)) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  transition: background 0.8s ease;
+}
+.jar {
+  position: relative;
+  width: 190px;
+  height: 258px;
+  border-radius: 30px 30px 66px 66px / 22px 22px 92px 92px;
+  border: 2px solid rgba(242, 233, 216, 0.22);
+  background: linear-gradient(
+    100deg,
+    rgba(242, 233, 216, 0.09),
+    rgba(242, 233, 216, 0.02) 40%,
+    rgba(242, 233, 216, 0.06)
+  );
+  overflow: hidden;
+  box-shadow:
+    inset 0 2px 14px rgba(242, 233, 216, 0.12),
+    inset 0 -20px 40px rgba(0, 0, 0, 0.4);
+}
+/* the rim/neck highlight */
+.jar::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  width: 30px;
+  height: 70%;
+  border-radius: 40px;
+  background: linear-gradient(rgba(242, 233, 216, 0.22), transparent);
+  filter: blur(1px);
+}
+.jar-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--fill-frac, 0.3) * 100%);
+  min-height: 6px;
+  background: linear-gradient(180deg, var(--amber-glow), var(--amber) 60%, var(--gold));
+  box-shadow: 0 -2px 26px rgba(246, 197, 96, 0.65);
+  transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* liquid surface shimmer */
+.jar-fill::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 246, 224, 0.85);
+  filter: blur(0.5px);
+}
+.jar-lid {
+  width: 150px;
+  height: 20px;
+  border-radius: 8px 8px 4px 4px;
+  margin-bottom: -6px;
+  background: linear-gradient(180deg, #b98a3f, #7c5a25);
+  border: 1px solid rgba(242, 233, 216, 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jar-fill,
+  .jar-halo,
+  .btn {
+    transition: none;
+  }
+}
+
+/* ---------- ledger rows ---------- */
+.ledger-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.4rem 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.ledger-row:last-child {
+  border-bottom: none;
+}
+
+.link {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.link:hover {
+  border-bottom-color: var(--gold);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--taupe);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
