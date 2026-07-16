@@ -1,0 +1,11 @@
+# Netlify config for the Tithe Jar web app (Next.js static export).
+# The app lives in web/; Netlify builds there and publishes the static export.
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  # Public contract address (safe to commit — it's on a public chain).
+  NEXT_PUBLIC_TITHE_JAR_ADDRESS = "0xD80E5C218f5520c5BF9495d960c2dBad6040BEdC"
+  NODE_VERSION = "22"
