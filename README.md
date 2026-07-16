@@ -9,6 +9,7 @@ public record that no one — not even you — can quietly rewrite.
 
 Built for the **Monad Spark** hackathon, live on **Monad testnet**.
 
+**Live app:** https://aesthetic-lollipop-38f566.netlify.app
 **Contract:** [`0xD80E5C218f5520c5BF9495d960c2dBad6040BEdC`](https://testnet.monadexplorer.com/address/0xD80E5C218f5520c5BF9495d960c2dBad6040BEdC)
 
 ---
